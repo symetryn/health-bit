@@ -5,8 +5,6 @@ pragma experimental ABIEncoderV2;
 
 contract MedicalHistory {
     mapping(string => MedicalRecord[]) medicalRecords;
-    mapping(string => User) users;
-    
 
     struct MedicalRecord {
         string id;
@@ -15,25 +13,9 @@ contract MedicalHistory {
         string doctorName;
         string diagnosis;
         string prescription;
-        string[] files;
-       
-    }
-    struct User {
-        string id;
-        string name;
+        string[] files;   
     }
 
-
-    function createNewUser(
-        string memory id,
-        string memory name
-        
-    ) public {
-        
-         User memory user = User(id,name);
-        users[id]=user;
-        
-    }
     function addMedicalRecord(
         string memory id,
         MedicalRecord memory record
@@ -49,17 +31,6 @@ contract MedicalHistory {
         returns (MedicalRecord[] memory) {
         
         return medicalRecords[id];
-        
-    }
-    
-    
-    function getUserById(
-        string memory id
-    ) public
-        view
-        returns (User memory){
-        
-      return  users[id];
         
     }
 
